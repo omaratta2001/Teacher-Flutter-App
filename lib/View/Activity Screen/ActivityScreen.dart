@@ -51,7 +51,7 @@ class _ActivityscreenState extends State<Activityscreen> {
         )),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 8.0, bottom: 2),
+            padding: const EdgeInsets.only(right: 8.0),
             child: Image.asset(
               "Assets/activity.png",
               width: 65,
@@ -82,189 +82,13 @@ class _ActivityscreenState extends State<Activityscreen> {
                     height: 110,
                   ),
 
-                  // Container(
-                  //   padding: EdgeInsets.all(15),
-                  //   decoration: BoxDecoration(
-                  //     color: Color(0xff5bf7e1),
-                  //   ),
-                  //   child: Row(
-                  //     crossAxisAlignment: CrossAxisAlignment.start,
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       Column(
-                  //         crossAxisAlignment: CrossAxisAlignment.start,
-                  //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //         children: [
-                  //           InkWell(
-                  //             onTap: () {
-                  //               setState(() {
-                  //                 selectedValue = 'المهارات اللغوية ';
-                  //               });
-                  //             },
-                  //             child: Row(
-                  //               children: [
-                  //                 Radio<String>(
-                  //                   value: 'المهارات اللغوية ',
-                  //                   groupValue: selectedValue,
-                  //                   onChanged: (value) {
-                  //                     setState(() {
-                  //                       selectedValue = value;
-                  //                     });
-                  //                   },
-                  //                 ),
-                  //                 Text(
-                  //                   "نشاط لغوي",
-                  //                   style: TextStyle(
-                  //                       fontSize: 20, fontWeight: FontWeight.bold),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //           ),
-                  //           InkWell(
-                  //             onTap: () {
-                  //               setState(() {
-                  //                 selectedValue = 'مهارات الرياضيات ';
-                  //               });
-                  //             },
-                  //             child: Row(
-                  //               children: [
-                  //                 Radio<String>(
-                  //                   value: 'مهارات الرياضيات ',
-                  //                   groupValue: selectedValue,
-                  //                   onChanged: (value) {
-                  //                     setState(() {
-                  //                       selectedValue = value;
-                  //                     });
-                  //                   },
-                  //                 ),
-                  //                 Text(
-                  //                   "نشاط رياضي",
-                  //                   style: TextStyle(
-                  //                       fontSize: 20, fontWeight: FontWeight.bold),
-                  //                 )
-                  //               ],
-                  //             ),
-                  //           ),
-                  //           InkWell(
-                  //             onTap: () {
-                  //               setState(() {
-                  //                 selectedValue = 'المفاهيم العلمية ';
-                  //               });
-                  //             },
-                  //             child: Row(
-                  //               children: [
-                  //                 Radio<String>(
-                  //                   value: 'المفاهيم العلمية  ',
-                  //                   groupValue: selectedValue,
-                  //                   onChanged: (value) {
-                  //                     setState(() {
-                  //                       selectedValue = value;
-                  //                     });
-                  //                   },
-                  //                 ),
-                  //                 Text(
-                  //                   "نشاط علمي",
-                  //                   style: TextStyle(
-                  //                       fontSize: 20, fontWeight: FontWeight.bold),
-                  //                 )
-                  //               ],
-                  //             ),
-                  //           ),
-                  //         ],
-                  //       ),
-                  //       Column(
-                  //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //         crossAxisAlignment: CrossAxisAlignment.start,
-                  //         children: [
-                  //           InkWell(
-                  //             onTap: () {
-                  //               setState(() {
-                  //                 selectedValue = 'الأنشطة الفنية ';
-                  //               });
-                  //             },
-                  //             child: Row(
-                  //               children: [
-                  //                 Radio<String>(
-                  //                   value: 'الأنشطة الفنية ',
-                  //                   groupValue: selectedValue,
-                  //                   onChanged: (value) {
-                  //                     setState(() {
-                  //                       selectedValue = value;
-                  //                     });
-                  //                   },
-                  //                 ),
-                  //                 Text(
-                  //                   "نشاط فني",
-                  //                   style: TextStyle(
-                  //                       fontSize: 20, fontWeight: FontWeight.bold),
-                  //                 )
-                  //               ],
-                  //             ),
-                  //           ),
-                  //           InkWell(
-                  //             onTap: () {
-                  //               setState(() {
-                  //                 selectedValue = 'الأنشطة الحركية ';
-                  //               });
-                  //             },
-                  //             child: Row(
-                  //               children: [
-                  //                 Radio<String>(
-                  //                   value: 'الأنشطة الحركية ',
-                  //                   groupValue: selectedValue,
-                  //                   onChanged: (value) {
-                  //                     setState(() {
-                  //                       selectedValue = value;
-                  //                     });
-                  //                   },
-                  //                 ),
-                  //                 Text(
-                  //                   "نشاط حركي",
-                  //                   style: TextStyle(
-                  //                       fontSize: 20, fontWeight: FontWeight.bold),
-                  //                 )
-                  //               ],
-                  //             ),
-                  //           ),
-                  //           InkWell(
-                  //             onTap: () {
-                  //               setState(() {
-                  //                 selectedValue =
-                  //                     'الأنشطة التكنولوجية او الوعى بالأجهزة والتطبيقات والمستحدثات التكنولوجية ';
-                  //               });
-                  //             },
-                  //             child: Row(
-                  //               children: [
-                  //                 Radio<String>(
-                  //                   value:
-                  //                       'الأنشطة التكنولوجية او الوعى بالأجهزة والتطبيقات والمستحدثات التكنولوجية ',
-                  //                   groupValue: selectedValue,
-                  //                   onChanged: (value) {
-                  //                     setState(() {
-                  //                       selectedValue = value;
-                  //                     });
-                  //                   },
-                  //                 ),
-                  //                 Text(
-                  //                   "نشاط تقني",
-                  //                   style: TextStyle(
-                  //                       fontSize: 20, fontWeight: FontWeight.bold),
-                  //                 )
-                  //               ],
-                  //             ),
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
-                        color: Color(0xffe4f8f1),
+                        color: lightblue,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -364,7 +188,7 @@ class _ActivityscreenState extends State<Activityscreen> {
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
-                        color: Color(0xfffbf8da),
+                        color: lightGreen,
                       ),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -444,6 +268,9 @@ class _ActivityscreenState extends State<Activityscreen> {
                             MediaQuery.of(context).size.height / 14),
                         child: InkWell(
                           onTap: () async {
+                            setState(() {
+                              _controller.text = "";
+                            });
                             if (!_isListening) {
                               setState(() => _isListening = true);
                               await _speechService.startListening((text) {
@@ -472,108 +299,6 @@ class _ActivityscreenState extends State<Activityscreen> {
                       ),
                     ],
                   ),
-
-                  // Row(
-                  //   crossAxisAlignment: CrossAxisAlignment.center,
-                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //   children: [
-                  //     Center(
-                  //       child: Text(
-                  //         "أكتب\nفكرتك",
-                  //         style: TextStyle(
-                  //             fontSize: 25, fontWeight: FontWeight.bold),
-                  //       ),
-                  //     ),
-                  //     Stack(
-                  //       children: [
-                  //         Container(
-                  //           width: MediaQuery.of(context).size.width / 1.5,
-                  //           height: 100,
-                  //           decoration: BoxDecoration(
-                  //               borderRadius: BorderRadius.circular(15),
-                  //               border: Border.all(
-                  //                   width: 4, color: Color(0xff006cbe))),
-                  //           child: Padding(
-                  //             padding: const EdgeInsets.all(8.0),
-                  //             child: TextField(
-                  //               controller: _controller,
-                  //               decoration: InputDecoration(
-                  //                 border: InputBorder.none,
-                  //                 focusedBorder: InputBorder
-                  //                     .none, // Removes border when focused
-                  //                 enabledBorder: InputBorder
-                  //                     .none, // Removes border when enabled
-                  //                 disabledBorder: InputBorder.none,
-                  //               ),
-                  //               maxLines: 5,
-                  //             ),
-                  //           ),
-                  //         ),
-                  //         Transform.translate(
-                  //             offset: Offset(20, -20),
-                  //             child: Image.asset("Assets/Pin.png"))
-                  //       ],
-                  //     )
-                  //   ],
-                  // ),
-                  // Row(
-                  //   crossAxisAlignment: CrossAxisAlignment.start,
-                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //   children: [
-                  //     Center(
-                  //       child: Text(
-                  //         "سجل\nفكرتك",
-                  //         style: TextStyle(
-                  //             fontSize: 25, fontWeight: FontWeight.bold),
-                  //       ),
-                  //     ),
-                  //     Stack(
-                  //       children: [
-                  //         Container(
-                  //           width: MediaQuery.of(context).size.width / 1.5,
-                  //           height: 60,
-                  //           padding: EdgeInsets.all(11),
-                  //           decoration: BoxDecoration(
-                  //               borderRadius: BorderRadius.circular(15),
-                  //               border: Border.all(
-                  //                   width: 4, color: Color(0xff006cbe))),
-                  //           child: Text(
-                  //             _spokenText!,
-                  //             style: TextStyle(fontSize: 20),
-                  //           ),
-                  //         ),
-                  //         Transform.translate(
-                  //           offset: Offset(
-                  //               -MediaQuery.of(context).size.width * 0.53, -20),
-                  //           child: InkWell(
-                  //             onTap: () async {
-                  //               if (!_isListening) {
-                  //                 setState(() => _isListening = true);
-                  //                 await _speechService.startListening((text) {
-                  //                   setState(() {
-                  //                     print("object");
-                  //                     _spokenText = text;
-                  //                   });
-                  //                 });
-                  //               } else {
-                  //                 _speechService.stopListening();
-                  //                 setState(() {
-                  //                   _isListening = false;
-                  //                 });
-                  //               }
-                  //             },
-                  //             child: Image.asset(
-                  //               "Assets/Mic.png",
-                  //               width: 100,
-                  //               height: 100,
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ],
-                  // ),
-
                   ElevatedButton(
                     onPressed: () async {
                       final SharedPreferences prefs =
@@ -586,18 +311,18 @@ class _ActivityscreenState extends State<Activityscreen> {
                               age.toString() +
                               'بحيث يتوافر في النشاط عنوان النشاط – زمن النشاط – اهداف النشاط بطريقة إجرائية قابلة للقياس – الأدوات المستخدمة في النشاط - محتوى النشاط – التقويم النهائي للأهداف ' +
                               selectedValue1! +
-                              "أبدا بالعنوان مباشرا";
+                              " أبدا بالعنوان النشاط مباشرا بدون أي مقدمات";
 
-                      if (_controller.text == "") {
+                      if (_controller.text != "") {
                         Prompit =
                             'اعتبر نفسك كاتب متخصص في تأليف الأنشطة لأطفال الروضة وقم بكتابة نشاط لتنمية أحد ' +
                                 _controller.text +
                                 'لأطفال الروضة لسن ' +
                                 age.toString() +
                                 'بحيث يتوافر في النشاط عنوان النشاط – زمن النشاط – اهداف النشاط بطريقة إجرائية قابلة للقياس – الأدوات المستخدمة في النشاط - محتوى النشاط – التقويم النهائي للأهداف ' +
-                                "أبدا بالعنوان مباشرا";
+                                " أبدا بالعنوان النشاط مباشرا بدون أي مقدمات";
                       }
-
+                      print(Prompit);
                       // ignore: use_build_context_synchronously
                       Navigator.push(context,
                           MaterialPageRoute(builder: (BuildContext context) {
@@ -609,7 +334,7 @@ class _ActivityscreenState extends State<Activityscreen> {
                       }));
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: lightGreen,
+                      backgroundColor: Color(0xff2a569a),
                       elevation: 10,
                       padding: EdgeInsets.only(
                           left: 100, right: 100, top: 10, bottom: 10),
@@ -636,21 +361,6 @@ buildOption(String label, bool Isselected) {
     padding: const EdgeInsets.all(8.0),
     child: Row(
       children: [
-        // Radio<String>(
-        //   fillColor: WidgetStateProperty.resolveWith<Color>(
-        //       (Set<WidgetState> states) {
-        //     if (states.contains(WidgetState.disabled)) {
-        //       return Colors.white.withOpacity(.32);
-        //     }
-        //     return Colors.white;
-        //   }),
-
-        //   value: value,
-        //   groupValue: selectedValue,
-        //   onChanged: (val) {
-        //     selectedValue = val;
-        //   },
-        // ),
         Container(
           width: 40,
           height: 40,

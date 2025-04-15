@@ -20,7 +20,7 @@ class _GenstoryState extends State<Genstory> {
   OpenAIService ai = OpenAIService();
   late Future<void> genai;
   bool _isGenerating = true;
-
+  String title = "";
   String genais = '';
   @override
   void initState() {
@@ -39,9 +39,13 @@ class _GenstoryState extends State<Genstory> {
     try {
       GeminiTextService _gemin = new GeminiTextService();
 
-      final textss = await _gemin.generateText(widget.Prompit);
+      var textss = await _gemin.generateText(widget.Prompit);
       print(textss);
       genais = textss!;
+      textss = await _gemin
+          .generateText(genais + " أريد من العنوان بدون أي مقدمات العنوان فقط");
+      title = textss!;
+      print(title);
       setState(() => _isGenerating = false);
       return genai;
     } catch (e) {
@@ -66,11 +70,14 @@ class _GenstoryState extends State<Genstory> {
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         )),
         actions: [
-          Image.asset(
-            "Assets/story.png",
-            width: 65,
-            height: 65,
-            fit: BoxFit.cover,
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Image.asset(
+              "Assets/story.png",
+              width: 65,
+              height: 65,
+              fit: BoxFit.cover,
+            ),
           )
         ],
       ),
@@ -90,23 +97,73 @@ class _GenstoryState extends State<Genstory> {
               ),
               Directionality(
                 textDirection: TextDirection.rtl,
-                child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height / 1.5,
-                    padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height / 14,
-                        right: MediaQuery.of(context).size.width / 18,
-                        bottom: MediaQuery.of(context).size.height / 15,
-                        left: 10),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("Assets/Layer7.png"),
-                          fit: BoxFit.fill),
+                child: Stack(
+                  children: [
+                    Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height / 1.5,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            border:
+                                Border.all(width: 7, color: Color(0xff2a569a)),
+                            borderRadius: BorderRadius.circular(45)),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height / 22,
+                              padding: EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                  color: Color(0xff2a569a),
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(35))),
+                              child: Center(
+                                  child: Text(
+                                title,
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              )),
+                            ),
+                            _isGenerating
+                                ? Expanded(
+                                    child: Center(
+                                        child: CircularProgressIndicator()))
+                                : Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: SingleChildScrollView(
+                                        child: buildStyledText(genais, 18),
+                                      ),
+                                    ),
+                                  ),
+                          ],
+                        )),
+                    Transform.translate(
+                      offset:
+                          Offset(-MediaQuery.of(context).size.width / 1.3, -25),
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            title = "";
+                            _isGenerating = true;
+                            genai = _generatetext();
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: lightGreen, shape: BoxShape.circle),
+                          child: Icon(
+                            Icons.refresh,
+                            color: Color(0xff2a569a),
+                            size: 60,
+                          ),
+                        ),
+                      ),
                     ),
-                    child: _isGenerating
-                        ? Center(child: CircularProgressIndicator())
-                        : SingleChildScrollView(
-                            child: buildStyledText(genais))),
+                  ],
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -155,7 +212,6 @@ class _GenstoryState extends State<Genstory> {
                       backgroundColor: Color(0xff2a569a),
                       elevation: 10,
                       fixedSize: Size(150, 60),
-                      padding: EdgeInsets.only(top: 10, bottom: 10),
                     ),
                   )
                 ],

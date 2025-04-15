@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:testapp/Constants.dart';
 import 'package:testapp/Controller/GeminiService.dart';
 import 'package:testapp/Controller/SpeakToText.dart';
 import 'package:testapp/View/Image%20Screen/GenImage.dart';
@@ -82,14 +83,14 @@ class _ImagescreenState extends State<Imagescreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    SizedBox(height: MediaQuery.of(context).size.height / 9),
+                    SizedBox(height: MediaQuery.of(context).size.height / 11),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Container(
                         padding: EdgeInsets.symmetric(vertical: 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25),
-                          color: Color(0xffe4f8f1),
+                          color: lightblue,
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -266,6 +267,9 @@ class _ImagescreenState extends State<Imagescreen> {
                               MediaQuery.of(context).size.height / 14),
                           child: InkWell(
                             onTap: () async {
+                              setState(() {
+                                _controller.text = "";
+                              });
                               if (!_isListening) {
                                 setState(() => _isListening = true);
                                 await _speechService.startListening((text) {

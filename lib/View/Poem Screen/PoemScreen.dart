@@ -54,11 +54,14 @@ class _PoemscreenState extends State<Poemscreen> {
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         )),
         actions: [
-          Image.asset(
-            "Assets/poem.png",
-            width: 65,
-            height: 65,
-            fit: BoxFit.cover,
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Image.asset(
+              "Assets/poem.png",
+              width: 65,
+              height: 65,
+              fit: BoxFit.cover,
+            ),
           )
         ],
       ),
@@ -76,251 +79,269 @@ class _PoemscreenState extends State<Poemscreen> {
                   .size
                   .height, // now Column has a fixed height
 
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(height: MediaQuery.of(context).size.height / 9),
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color: Color(0xffe4f8f1),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(height: MediaQuery.of(context).size.height / 11),
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: lightblue,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _numberBoxSelections =
+                                        List.generate(8, (i) => i == 0);
+                                    selectedValue =
+                                        ' سنوات يتناول موضوع عن الحيوانات ';
+                                    _controller.text = "";
+                                  });
+                                  print(_numberBoxSelections[0]);
+                                },
+                                child: buildOption(
+                                    "الحيوانات", _numberBoxSelections[0]),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _numberBoxSelections =
+                                        List.generate(8, (i) => i == 1);
+
+                                    selectedValue =
+                                        ' سنوات يتناول موضوع عن الطيور ';
+                                    _controller.text = "";
+                                  });
+                                },
+                                child: buildOption(
+                                    "الطيور", _numberBoxSelections[1]),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _numberBoxSelections =
+                                        List.generate(8, (i) => i == 2);
+
+                                    selectedValue =
+                                        ' سنوات يتناول موضوع عن الأسماك ';
+                                    _controller.text = "";
+                                  });
+                                },
+                                child: buildOption(
+                                    "الأسماك", _numberBoxSelections[2]),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _numberBoxSelections =
+                                        List.generate(8, (i) => i == 3);
+
+                                    selectedValue =
+                                        ' سنوات يتناول موضوع عن النباتات يعنى نباتات او أشجار او خضروات او فواكه ';
+                                    _controller.text = "";
+                                  });
+                                },
+                                child: buildOption(
+                                    "الناتات", _numberBoxSelections[3]),
+                              )
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _numberBoxSelections =
+                                        List.generate(8, (i) => i == 4);
+
+                                    selectedValue =
+                                        ' سنوات يتناول موضوع عن الحروف الهجائية ';
+                                    _controller.text = "";
+                                  });
+                                },
+                                child: buildOption(
+                                    "الحروف", _numberBoxSelections[4]),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _numberBoxSelections =
+                                        List.generate(8, (i) => i == 5);
+
+                                    selectedValue =
+                                        ' سنوات يتناول موضوع عن الأرقام ';
+                                    _controller.text = "";
+                                  });
+                                },
+                                child: buildOption(
+                                    "الأرقام", _numberBoxSelections[5]),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _numberBoxSelections =
+                                        List.generate(8, (i) => i == 6);
+
+                                    selectedValue =
+                                        ' سنوات يتناول موضوع عن الألوان ';
+                                    _controller.text = "";
+                                  });
+                                },
+                                child: buildOption(
+                                    "الألوان", _numberBoxSelections[6]),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _numberBoxSelections =
+                                        List.generate(8, (i) => i == 7);
+
+                                    selectedValue =
+                                        ' سنوات يتناول موضوع عن الفراشات ';
+                                    _controller.text = "";
+                                  });
+                                },
+                                child: buildOption(
+                                    "الفراشات", _numberBoxSelections[7]),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  _numberBoxSelections =
-                                      List.generate(8, (i) => i == 0);
-                                  selectedValue =
-                                      ' سنوات يتناول موضوع عن الحيوانات ';
-                                });
-                                print(_numberBoxSelections[0]);
-                              },
-                              child: buildOption(
-                                  "الحيوانات", _numberBoxSelections[0]),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  _numberBoxSelections =
-                                      List.generate(8, (i) => i == 1);
-
-                                  selectedValue =
-                                      ' سنوات يتناول موضوع عن الطيور ';
-                                });
-                              },
-                              child: buildOption(
-                                  "الطيور", _numberBoxSelections[1]),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  _numberBoxSelections =
-                                      List.generate(8, (i) => i == 2);
-
-                                  selectedValue =
-                                      ' سنوات يتناول موضوع عن الأسماك ';
-                                });
-                              },
-                              child: buildOption(
-                                  "الأسماك", _numberBoxSelections[2]),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  _numberBoxSelections =
-                                      List.generate(8, (i) => i == 3);
-
-                                  selectedValue =
-                                      ' سنوات يتناول موضوع عن النباتات يعنى نباتات او أشجار او خضروات او فواكه ';
-                                });
-                              },
-                              child: buildOption(
-                                  "الناتات", _numberBoxSelections[3]),
-                            )
-                          ],
+                    Center(
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(25)),
+                        child: Text(
+                          "أكتب أو سجل فكرتك",
+                          style: TextStyle(
+                              fontSize: 25, fontWeight: FontWeight.bold),
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  _numberBoxSelections =
-                                      List.generate(8, (i) => i == 4);
-
-                                  selectedValue =
-                                      ' سنوات يتناول موضوع عن الحروف الهجائية ';
-                                });
-                              },
-                              child: buildOption(
-                                  "الحروف", _numberBoxSelections[4]),
+                      ),
+                    ),
+                    Stack(
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width / 1.2,
+                          height: MediaQuery.of(context).size.height / 4,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                              border: Border.all(
+                                  width: 4, color: Color(0xff006cbe))),
+                          child: TextField(
+                            controller: _controller,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              focusedBorder: InputBorder
+                                  .none, // Removes border when focused
+                              enabledBorder: InputBorder
+                                  .none, // Removes border when enabled
+                              disabledBorder: InputBorder.none,
                             ),
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  _numberBoxSelections =
-                                      List.generate(8, (i) => i == 5);
+                            onTap: () {
+                              _numberBoxSelections =
+                                  List.generate(8, (index) => false);
+                            },
+                            maxLines: 5,
+                          ),
+                        ),
+                        Transform.translate(
+                          offset: Offset(
+                              -MediaQuery.of(context).size.width * 0.68,
+                              MediaQuery.of(context).size.height / 14),
+                          child: InkWell(
+                            onTap: () async {
+                              setState(() {
+                                _controller.text = "";
+                              });
+                              if (!_isListening) {
+                                setState(() => _isListening = true);
+                                await _speechService.startListening((text) {
+                                  setState(() {
+                                    print("object");
+                                    _numberBoxSelections =
+                                        List.generate(6, (index) => false);
 
-                                  selectedValue =
-                                      ' سنوات يتناول موضوع عن الأرقام ';
+                                    _controller.text = text;
+                                  });
                                 });
-                              },
-                              child: buildOption(
-                                  "الأرقام", _numberBoxSelections[5]),
+                              } else {
+                                _speechService.stopListening();
+                                setState(() {
+                                  _isListening = false;
+                                });
+                              }
+                            },
+                            child: Image.asset(
+                              "Assets/Mic1.png",
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.fill,
                             ),
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  _numberBoxSelections =
-                                      List.generate(8, (i) => i == 6);
-
-                                  selectedValue =
-                                      ' سنوات يتناول موضوع عن الألوان ';
-                                });
-                              },
-                              child: buildOption(
-                                  "الألوان", _numberBoxSelections[6]),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  _numberBoxSelections =
-                                      List.generate(8, (i) => i == 7);
-
-                                  selectedValue =
-                                      ' سنوات يتناول موضوع عن الفراشات ';
-                                });
-                              },
-                              child: buildOption(
-                                  "الفراشات", _numberBoxSelections[7]),
-                            )
-                          ],
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                  Center(
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Text(
-                        "أكتب أو سجل فكرتك",
-                        style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                  Stack(
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width / 1.2,
-                        height: MediaQuery.of(context).size.height / 4,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15),
-                            border:
-                                Border.all(width: 4, color: Color(0xff006cbe))),
-                        child: TextField(
-                          controller: _controller,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            focusedBorder:
-                                InputBorder.none, // Removes border when focused
-                            enabledBorder:
-                                InputBorder.none, // Removes border when enabled
-                            disabledBorder: InputBorder.none,
-                          ),
-                          maxLines: 5,
-                        ),
-                      ),
-                      Transform.translate(
-                        offset: Offset(
-                            -MediaQuery.of(context).size.width * 0.68,
-                            MediaQuery.of(context).size.height / 14),
-                        child: InkWell(
-                          onTap: () async {
-                            if (!_isListening) {
-                              setState(() => _isListening = true);
-                              await _speechService.startListening((text) {
-                                setState(() {
-                                  print("object");
-                                  _numberBoxSelections =
-                                      List.generate(6, (index) => false);
-
-                                  _controller.text = text;
-                                });
-                              });
-                            } else {
-                              _speechService.stopListening();
-                              setState(() {
-                                _isListening = false;
-                              });
-                            }
-                          },
-                          child: Image.asset(
-                            "Assets/Mic1.png",
-                            width: 100,
-                            height: 100,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      final SharedPreferences prefs =
-                          await SharedPreferences.getInstance();
-                      int? age = await prefs.getInt('age');
-                      Prompit =
-                          'اعتبر نفسك متخصص في تأليف أناشيد الأطفال ولديك المهارة في تأليف أناشيد مناسبة لأطفال الروضة، قم بتأليف نشيد لأطفال الروضة من سن ' +
-                              age.toString() +
-                              selectedValue! +
-                              'بحيث يتوافر في النشيد الكلمات البسيطة المناسبة للسن وان يتوافر في النشيد القافية والسجع في نهاية الابيات مع مراعاة ان تكون الكلمات بالعامية المصرية وان يكون عدد الكلمات المكونة لكل بيت ما بين 3 الى 4 كلمات فقط' +
-                              "أبدا بعنوان النشيد مباشرا  بدون أي مقدمات";
-
-                      if (_controller.text != "") {
+                    ElevatedButton(
+                      onPressed: () async {
+                        final SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        int? age = await prefs.getInt('age');
                         Prompit =
                             'اعتبر نفسك متخصص في تأليف أناشيد الأطفال ولديك المهارة في تأليف أناشيد مناسبة لأطفال الروضة، قم بتأليف نشيد لأطفال الروضة من سن ' +
                                 age.toString() +
-                                _controller.text +
+                                selectedValue! +
                                 'بحيث يتوافر في النشيد الكلمات البسيطة المناسبة للسن وان يتوافر في النشيد القافية والسجع في نهاية الابيات مع مراعاة ان تكون الكلمات بالعامية المصرية وان يكون عدد الكلمات المكونة لكل بيت ما بين 3 الى 4 كلمات فقط' +
-                                " أبدا بعنوان النشيد مباشرا بدون أي مقدمات";
-                      }
-                      print(Prompit);
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (BuildContext context) {
-                        return Gentextactivityscreen(
-                          Prompit: Prompit,
-                          titlename: 'تأليف نشيد',
-                          image: 'poem',
-                        );
-                      }));
-                    },
-                    child: Text(
-                      "ارسال",
-                      style:
-                          GoogleFonts.amiri(fontSize: 30, color: Colors.white),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff2a569a),
-                      elevation: 10,
-                      padding: EdgeInsets.only(
-                          left: 100, right: 100, top: 10, bottom: 10),
-                    ),
-                  )
-                ],
+                                "أبدا بعنوان النشيد مباشرا  بدون أي مقدمات";
+
+                        if (_controller.text != "") {
+                          Prompit =
+                              'اعتبر نفسك متخصص في تأليف أناشيد الأطفال ولديك المهارة في تأليف أناشيد مناسبة لأطفال الروضة، قم بتأليف نشيد لأطفال الروضة من سن ' +
+                                  age.toString() +
+                                  _controller.text +
+                                  'بحيث يتوافر في النشيد الكلمات البسيطة المناسبة للسن وان يتوافر في النشيد القافية والسجع في نهاية الابيات مع مراعاة ان تكون الكلمات بالعامية المصرية وان يكون عدد الكلمات المكونة لكل بيت ما بين 3 الى 4 كلمات فقط' +
+                                  " أبدا بعنوان النشيد مباشرا بدون أي مقدمات";
+                        }
+                        print(Prompit);
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (BuildContext context) {
+                          return Gentextactivityscreen(
+                            Prompit: Prompit,
+                            titlename: 'تأليف نشيد',
+                            image: 'poem',
+                          );
+                        }));
+                      },
+                      child: Text(
+                        "ارسال",
+                        style: GoogleFonts.amiri(
+                            fontSize: 30, color: Colors.white),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xff2a569a),
+                        elevation: 10,
+                        padding: EdgeInsets.only(
+                            left: 100, right: 100, top: 10, bottom: 10),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
@@ -336,21 +357,6 @@ buildOption(String label, bool Isselected) {
     padding: const EdgeInsets.all(8.0),
     child: Row(
       children: [
-        // Radio<String>(
-        //   fillColor: WidgetStateProperty.resolveWith<Color>(
-        //       (Set<WidgetState> states) {
-        //     if (states.contains(WidgetState.disabled)) {
-        //       return Colors.white.withOpacity(.32);
-        //     }
-        //     return Colors.white;
-        //   }),
-
-        //   value: value,
-        //   groupValue: selectedValue,
-        //   onChanged: (val) {
-        //     selectedValue = val;
-        //   },
-        // ),
         Container(
           width: 40,
           height: 40,

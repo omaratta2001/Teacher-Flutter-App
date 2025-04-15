@@ -23,6 +23,7 @@ class _ChoosebuttonState extends State<Choosebutton> {
   Level? _selectedLevel;
   int ages = 0;
   bool? Isselected = false;
+
   List<chosseleve> age = [
     chosseleve(age: 4),
     chosseleve(age: 5),
@@ -54,7 +55,7 @@ class _ChoosebuttonState extends State<Choosebutton> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(
-                height: 10,
+                height: 60,
               ),
               InkWell(
                 onTap: () {

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:testapp/Constants.dart';
+import 'package:testapp/Controller/GeminiService.dart';
 import 'package:testapp/Controller/OpenAIController.dart';
 import 'package:testapp/Controller/spans.dart';
 import 'package:testapp/View/Story%20Screen/GenImageStory.dart';
@@ -28,6 +29,7 @@ class _GentextactivityscreenState extends State<Gentextactivityscreen> {
   OpenAIService ai = OpenAIService();
   late Future<void> genai;
   bool _isGenerating = true;
+  String title = "";
 
   String genais = '';
   @override
@@ -45,9 +47,14 @@ class _GentextactivityscreenState extends State<Gentextactivityscreen> {
 
   Future<void> _generatetext() async {
     try {
-      final textss = await OpenAIService.sendRequest(widget.Prompit);
+      GeminiTextService gen = GeminiTextService();
+      var textss = await gen.generateText(widget.Prompit);
+
       print(textss);
-      genais = textss;
+      genais = textss!;
+      textss = await gen
+          .generateText(genais + " أريد من العنوان بدون أي مقدمات العنوان فقط");
+      title = textss!;
       setState(() => _isGenerating = false);
       return genai;
     } catch (e) {
@@ -72,11 +79,14 @@ class _GentextactivityscreenState extends State<Gentextactivityscreen> {
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         )),
         actions: [
-          Image.asset(
-            "Assets/${widget.image}.png",
-            width: 65,
-            height: 65,
-            fit: BoxFit.cover,
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Image.asset(
+              "Assets/${widget.image}.png",
+              width: 65,
+              height: 65,
+              fit: BoxFit.cover,
+            ),
           )
         ],
       ),
@@ -96,24 +106,74 @@ class _GentextactivityscreenState extends State<Gentextactivityscreen> {
               ),
               Directionality(
                 textDirection: TextDirection.rtl,
-                child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height / 1.5,
-                    padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height / 14,
-                        right: MediaQuery.of(context).size.width / 18,
-                        bottom: MediaQuery.of(context).size.height / 15,
-                        left: 10),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("Assets/Layer7.png"),
-                          fit: BoxFit.fill),
+                child: Stack(
+                  children: [
+                    Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height / 1.5,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            border:
+                                Border.all(width: 7, color: Color(0xff2a569a)),
+                            borderRadius: BorderRadius.circular(45)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height / 22,
+                              padding: EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                  color: Color(0xff2a569a),
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(35))),
+                              child: Center(
+                                  child: Text(
+                                title,
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              )),
+                            ),
+                            _isGenerating
+                                ? Expanded(
+                                    child: Center(
+                                        child: CircularProgressIndicator()))
+                                : Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: SingleChildScrollView(
+                                        child: buildStyledText(genais, 18),
+                                      ),
+                                    ),
+                                  ),
+                          ],
+                        )),
+                    Transform.translate(
+                      offset:
+                          Offset(-MediaQuery.of(context).size.width / 1.3, -25),
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            title = "";
+                            _isGenerating = true;
+                            genai = _generatetext();
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: lightGreen, shape: BoxShape.circle),
+                          child: Icon(
+                            Icons.refresh,
+                            color: Color(0xff2a569a),
+                            size: 60,
+                          ),
+                        ),
+                      ),
                     ),
-                    child: _isGenerating
-                        ? Center(child: CircularProgressIndicator())
-                        : SingleChildScrollView(
-                            child: buildStyledText(genais),
-                          )),
+                  ],
+                ),
               ),
               ElevatedButton(
                 onPressed: () async {

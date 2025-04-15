@@ -58,11 +58,14 @@ class _GenimagestoryState extends State<Genimagestory> {
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         )),
         actions: [
-          Image.asset(
-            "Assets/story.png",
-            width: 65,
-            height: 65,
-            fit: BoxFit.cover,
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Image.asset(
+              "Assets/story.png",
+              width: 65,
+              height: 65,
+              fit: BoxFit.cover,
+            ),
           )
         ],
       ),
@@ -105,7 +108,8 @@ class _GenimagestoryState extends State<Genimagestory> {
                         'sk-8O39BNVMc5JJf9ppRs2456ieucZtT3wzBgbGQ67zYj5ZfhPJ',
                   );
 
-                  await imageService.saveImageWithPopupPicker(context, _image);
+                  await imageService.saveImageWithPopupPicker(
+                      context, imageBytes!);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xff2a569a),
