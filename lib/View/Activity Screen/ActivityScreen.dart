@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:testapp/Constants.dart';
 import 'package:testapp/Controller/SpeakToText.dart';
 import 'package:testapp/View/Activity%20Screen/gentextactivityScreen.dart';
-import 'package:testapp/View/Story%20Screen/Genstory.dart';
 
 class Activityscreen extends StatefulWidget {
   const Activityscreen({super.key});
@@ -20,10 +19,9 @@ class _ActivityscreenState extends State<Activityscreen> {
   String? selectedValue; // This will store the selected radio button value
   String? selectedValue1; // This will store the selected radio button value
   final TextEditingController _controller = TextEditingController();
-  SpeechService _speechService = SpeechService();
+  final SpeechService _speechService = SpeechService();
   bool _isListening = false;
   String Prompit = '';
-  String _spokenText = '';
   @override
   void initState() {
     super.initState();
@@ -72,7 +70,7 @@ class _ActivityscreenState extends State<Activityscreen> {
         child: Directionality(
           textDirection: TextDirection.rtl,
           child: SingleChildScrollView(
-            child: Container(
+            child: SizedBox(
               height: MediaQuery.of(context)
                   .size
                   .height, // now Column has a fixed height
@@ -283,7 +281,6 @@ class _ActivityscreenState extends State<Activityscreen> {
                                     selectedValue = 'المهارات اللغوية ';
                                     _controller.text = '';
                                   });
-                                  print(_numberBoxSelections[0]);
                                 },
                                 child: buildOption(
                                     "نشاط لغوي", _numberBoxSelections[0]),
@@ -451,7 +448,6 @@ class _ActivityscreenState extends State<Activityscreen> {
                               setState(() => _isListening = true);
                               await _speechService.startListening((text) {
                                 setState(() {
-                                  print("object");
                                   _numberBoxSelections =
                                       List.generate(6, (index) => false);
                                   _numberBoxSelections1 =
@@ -601,8 +597,8 @@ class _ActivityscreenState extends State<Activityscreen> {
                                 'بحيث يتوافر في النشاط عنوان النشاط – زمن النشاط – اهداف النشاط بطريقة إجرائية قابلة للقياس – الأدوات المستخدمة في النشاط - محتوى النشاط – التقويم النهائي للأهداف ' +
                                 "أبدا بالعنوان مباشرا";
                       }
-                      print(Prompit);
 
+                      // ignore: use_build_context_synchronously
                       Navigator.push(context,
                           MaterialPageRoute(builder: (BuildContext context) {
                         return Gentextactivityscreen(
@@ -612,16 +608,16 @@ class _ActivityscreenState extends State<Activityscreen> {
                         );
                       }));
                     },
-                    child: Text(
-                      "ارسال",
-                      style:
-                          GoogleFonts.amiri(fontSize: 30, color: Colors.white),
-                    ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: lightGreen,
                       elevation: 10,
                       padding: EdgeInsets.only(
                           left: 100, right: 100, top: 10, bottom: 10),
+                    ),
+                    child: Text(
+                      "ارسال",
+                      style:
+                          GoogleFonts.amiri(fontSize: 30, color: Colors.white),
                     ),
                   )
                 ],
@@ -634,8 +630,8 @@ class _ActivityscreenState extends State<Activityscreen> {
   }
 }
 
+// ignore: non_constant_identifier_names
 buildOption(String label, bool Isselected) {
-  bool? isselcted = false;
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Row(

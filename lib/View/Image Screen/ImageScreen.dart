@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:testapp/Constants.dart';
 import 'package:testapp/Controller/GeminiService.dart';
-import 'package:testapp/Controller/OpenAIController.dart';
 import 'package:testapp/Controller/SpeakToText.dart';
 import 'package:testapp/View/Image%20Screen/GenImage.dart';
-import 'package:testapp/View/Story%20Screen/Genstory.dart';
 import 'package:stability_image_generation/stability_image_generation.dart';
 import 'package:translator/translator.dart';
 
@@ -213,7 +210,8 @@ class _ImagescreenState extends State<Imagescreen> {
                                       imageAIStyle = ImageAIStyle.pencilDrawing;
 
                                       selectedValue =
-                                          'مع مراعاة ان يكون أسلوب الرسم اوت لاين بحيث يكون الرسمة مناسبة لوضعها في كتب التلوين';
+                                          'مع مراعاة ان يكون أسلوب الرسم اوت لاين بحيث يكون الرسمة   مناسبة لوضعها في كتب التلوين' +
+                                              "و أن تكون رسمة مبسطة في التلوين";
                                     });
                                   },
                                   child: buildOption(
@@ -298,9 +296,6 @@ class _ImagescreenState extends State<Imagescreen> {
                     ),
                     ElevatedButton(
                       onPressed: () async {
-                        final SharedPreferences prefs =
-                            await SharedPreferences.getInstance();
-                        int? age = await prefs.getInt('age');
                         Prompit = '';
                         if (_controller != '') {
                           writing = true;
@@ -315,35 +310,32 @@ class _ImagescreenState extends State<Imagescreen> {
                           }
                           GeminiTextService _gemin = new GeminiTextService();
 
-                          String? gentext = await _gemin.generateText(Prompit +
-                              ' translate this to english without saying anything before or after only say the translation');
+                          String? gentext = await _gemin.generateText(
+                              '$Prompit translate this to english without saying anything before or after only say the translation');
                           final translator = GoogleTranslator();
 
                           var translation = await translator.translate(Prompit,
                               from: 'ar', to: 'en');
                           Prompit = translation.text;
-                          print(Prompit);
-                          print(gentext);
 
                           Navigator.push(context, MaterialPageRoute(
                               builder: (BuildContext context) {
                             return Genimage(
                               prompt: 'generate an image about: $gentext',
-                              imageAIStyle: imageAIStyle,
                             );
                           }));
                         }
                       },
-                      child: Text(
-                        "ارسال",
-                        style: GoogleFonts.amiri(
-                            fontSize: 30, color: Colors.white),
-                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xff2a569a),
                         elevation: 10,
                         padding: EdgeInsets.only(
                             left: 100, right: 100, top: 10, bottom: 10),
+                      ),
+                      child: Text(
+                        "ارسال",
+                        style: GoogleFonts.amiri(
+                            fontSize: 30, color: Colors.white),
                       ),
                     )
                   ],
@@ -358,26 +350,10 @@ class _ImagescreenState extends State<Imagescreen> {
 }
 
 buildOption(String label, bool Isselected) {
-  bool? isselcted = false;
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Row(
       children: [
-        // Radio<String>(
-        //   fillColor: WidgetStateProperty.resolveWith<Color>(
-        //       (Set<WidgetState> states) {
-        //     if (states.contains(WidgetState.disabled)) {
-        //       return Colors.white.withOpacity(.32);
-        //     }
-        //     return Colors.white;
-        //   }),
-
-        //   value: value,
-        //   groupValue: selectedValue,
-        //   onChanged: (val) {
-        //     selectedValue = val;
-        //   },
-        // ),
         Container(
           width: 40,
           height: 40,

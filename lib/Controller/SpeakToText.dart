@@ -5,16 +5,9 @@ import 'package:speech_to_text/speech_to_text.dart';
 class SpeechService {
   final SpeechToText _speech = SpeechToText();
   bool _isAvailable = false;
-  Timer? _silenceTimer;
 
   Future<void> initSpeech() async {
     _isAvailable = await _speech.initialize();
-  }
-
-  void _resetSilenceTimer() {
-    _silenceTimer?.cancel(); // Cancel the existing timer
-    _silenceTimer =
-        Timer(const Duration(seconds: 2), stopListening); // Set a new timer
   }
 
   Future<void> startListening(Function(String) onResult) async {

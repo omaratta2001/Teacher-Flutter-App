@@ -1,26 +1,26 @@
+// ignore: file_names
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_gallery_saver_plus/image_gallery_saver_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
+// ignore: depend_on_referenced_packages
 import 'package:stability_image_generation/stability_image_generation.dart';
 import 'package:file_picker/file_picker.dart';
 
 class ImageGenerationService {
   final StabilityAI _ai = StabilityAI();
   final String apiKey;
-  final ImageAIStyle imageAIStyle;
 
   ImageGenerationService({
     required this.apiKey,
-    this.imageAIStyle = ImageAIStyle.cartoon,
   });
 
   /// Generate image from prompt
   Future<Uint8List> generateImage(String prompt) async {
     return await _ai.generateImage(
       apiKey: apiKey,
-      imageAIStyle: imageAIStyle,
+      imageAIStyle: ImageAIStyle.cartoon,
       prompt: prompt,
     );
   }
@@ -42,7 +42,6 @@ class ImageGenerationService {
 
       // Let user choose directory
       String? path = await FilePicker.platform.getDirectoryPath();
-      print(path);
       if (path == null) return false; // User canceled
 
       // Save file
@@ -51,7 +50,6 @@ class ImageGenerationService {
       await file.writeAsBytes(imageBytes);
       return true;
     } catch (e) {
-      print('Error: $e');
       return false;
     }
   }
@@ -96,11 +94,13 @@ class ImageGenerationService {
       await file.writeAsBytes(imageBytes);
 
       // Show success feedback
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Image saved successfully!")),
       );
       return true;
     } catch (e) {
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Failed to save: ${e.toString()}")),
       );

@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:testapp/Constants.dart';
-import 'package:testapp/View/GenText.dart';
 import 'package:testapp/View/HomePage.dart';
-import 'package:testapp/View/OnBoradingScreen.dart';
-import 'package:testapp/View/button.dart';
-import 'package:testapp/View/choosebutton.dart';
-import 'package:testapp/View/gen.dart';
 import 'package:testapp/theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Add this
-  final prefs = await SharedPreferences.getInstance();
   runApp(MyApp());
 }
 

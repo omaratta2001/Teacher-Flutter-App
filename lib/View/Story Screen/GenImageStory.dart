@@ -1,9 +1,6 @@
 import 'dart:typed_data';
-import 'package:stability_image_generation/stability_image_generation.dart';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:testapp/Constants.dart';
 import 'package:testapp/Controller/GeminiImage.dart';
 import 'package:testapp/Controller/GeneratingImage.dart';
 
@@ -18,14 +15,7 @@ class Genimagestory extends StatefulWidget {
 
 class _GenimagestoryState extends State<Genimagestory> {
   late Uint8List _image;
-  Uint8List? _imageBytes;
 
-  late Future<Uint8List> _imageFuture;
-  late Future<Uint8List?> _imageFuture1;
-
-  bool _isGenerating = true;
-  bool _isLoading = true;
-  bool _isGeneratingtext = true;
   Uint8List? imageBytes;
   bool loading = true;
   String? gentext = '';
@@ -113,21 +103,19 @@ class _GenimagestoryState extends State<Genimagestory> {
                   final imageService = ImageGenerationService(
                     apiKey:
                         'sk-8O39BNVMc5JJf9ppRs2456ieucZtT3wzBgbGQ67zYj5ZfhPJ',
-                    imageAIStyle:
-                        ImageAIStyle.digitalPainting, // optional style
                   );
 
                   await imageService.saveImageWithPopupPicker(context, _image);
                 },
-                child: Text(
-                  "تحميل",
-                  style: GoogleFonts.amiri(fontSize: 30, color: Colors.white),
-                ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xff2a569a),
                   elevation: 10,
                   padding:
                       EdgeInsets.only(left: 70, right: 70, top: 10, bottom: 10),
+                ),
+                child: Text(
+                  "تحميل",
+                  style: GoogleFonts.amiri(fontSize: 30, color: Colors.white),
                 ),
               ),
             ],

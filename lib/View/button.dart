@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:testapp/View/Activity%20Screen/ActivityScreen.dart';
-import 'package:testapp/View/GenText.dart';
 import 'package:testapp/View/Image%20Screen/ImageScreen.dart';
 import 'package:testapp/View/Poem%20Screen/PoemScreen.dart';
 import 'package:testapp/View/Story%20Screen/StoryChooseScreen.dart';
-import 'package:testapp/View/gen.dart';
 
 class Buttons extends StatefulWidget {
   const Buttons({super.key});

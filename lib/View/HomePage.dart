@@ -75,6 +75,10 @@ class _HomepageState extends State<Homepage> {
                           builder: (context) => Choosebutton(),
                         ));
                   },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xff2a569a),
+                      padding: EdgeInsets.only(
+                          left: 80, right: 80, top: 10, bottom: 10)),
                   child: Text(
                     "تخطى",
                     style: TextStyle(
@@ -82,10 +86,6 @@ class _HomepageState extends State<Homepage> {
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff2a569a),
-                      padding: EdgeInsets.only(
-                          left: 80, right: 80, top: 10, bottom: 10)),
                 )
               ],
             ),
