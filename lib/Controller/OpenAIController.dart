@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 class OpenAIService {
   static const String apiKey =
-      "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";
+      "OpenRouterApiKey";
   static const String baseUrl = "https://openrouter.ai/api/v1/chat/completions";
 
   static Future<String> sendRequest(String userText) async {
