@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:testapp/Constants.dart';
 import 'package:testapp/Controller/GeminiImage.dart';
 import 'package:testapp/Controller/GeneratingImage.dart';
 
@@ -84,24 +85,48 @@ class _GenimageState extends State<Genimage> {
               SizedBox(
                 height: 20,
               ),
-              Container(
-                width: MediaQuery.of(context).size.width / 1.2,
-                height: MediaQuery.of(context).size.height / 2,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25),
-                    border: Border.all(width: 6, color: Color(0xff2a569a))),
-                child: loading
-                    ? Center(child: CircularProgressIndicator())
-                    : imageBytes != null
-                        ? ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: Image.memory(
-                              imageBytes!,
-                              fit: BoxFit.fill,
-                            ),
-                          )
-                        : Center(child: Text("Failed to load image")),
+              Stack(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    height: MediaQuery.of(context).size.height / 2,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(25),
+                        border: Border.all(width: 6, color: Color(0xff2a569a))),
+                    child: loading
+                        ? Center(child: CircularProgressIndicator())
+                        : imageBytes != null
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: Image.memory(
+                                  imageBytes!,
+                                  fit: BoxFit.fill,
+                                ),
+                              )
+                            : Center(child: Text("Failed to load image")),
+                  ),
+                  Transform.translate(
+                    offset:
+                        Offset(-MediaQuery.of(context).size.width / 16, -25),
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          _generateImage();
+                        });
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: lightGreen, shape: BoxShape.circle),
+                        child: Icon(
+                          Icons.refresh,
+                          color: Color(0xff2a569a),
+                          size: 60,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               ElevatedButton(
                 onPressed: () async {

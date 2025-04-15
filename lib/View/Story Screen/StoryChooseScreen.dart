@@ -79,7 +79,7 @@ class _StorychoosescreenState extends State<Storychoosescreen> {
                     height: 110,
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(7.0),
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       decoration: BoxDecoration(
@@ -183,7 +183,7 @@ class _StorychoosescreenState extends State<Storychoosescreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(7.0),
                     child: Container(
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
@@ -328,14 +328,7 @@ class _StorychoosescreenState extends State<Storychoosescreen> {
                         final SharedPreferences prefs =
                             await SharedPreferences.getInstance();
                         int? age = await prefs.getInt('age');
-                        Prompit =
-                            'اعتبر نفسك متخصص في تأليف قصص الأطفال ولديك المهارة في كتابة القصة بحرفية مع توافر حبكه درامية بكل قصة، قم بتأليف قصة لأطفال الروضة من سن ' +
-                                age.toString() +
-                                'سنوات لتنمية أحد ' +
-                                selectedValue! +
-                                'المناسبة لأطفال الروضة بحيث يتوافر في القصة عنوان جذاب ومعبر عن القصة وعدد كلمات ما بين 150 الى 200 كلمة ويتوافر بالقصة الحبكة الدرامية والنهاية المناسبة ' +
-                                selectedValue1! +
-                                "إبدا بالعنوان مباشرا";
+
                         if (_controller.text != "") {
                           Prompit =
                               'اعتبر نفسك متخصص في تأليف قصص الأطفال ولديك المهارة في كتابة القصة بحرفية مع توافر حبكه درامية بكل قصة، قم بتأليف قصة لأطفال الروضة من سن ' +
@@ -343,6 +336,15 @@ class _StorychoosescreenState extends State<Storychoosescreen> {
                                   'سنوات لتنمية أحد ' +
                                   _controller.text +
                                   'المناسبة لأطفال الروضة بحيث يتوافر في القصة عنوان جذاب ومعبر عن القصة وعدد كلمات ما بين 150 الى 200 كلمة ويتوافر بالقصة الحبكة الدرامية والنهاية المناسبة ' +
+                                  "إبدا بالعنوان مباشرا";
+                        } else {
+                          Prompit =
+                              'اعتبر نفسك متخصص في تأليف قصص الأطفال ولديك المهارة في كتابة القصة بحرفية مع توافر حبكه درامية بكل قصة، قم بتأليف قصة لأطفال الروضة من سن ' +
+                                  age.toString() +
+                                  'سنوات لتنمية أحد ' +
+                                  selectedValue! +
+                                  'المناسبة لأطفال الروضة بحيث يتوافر في القصة عنوان جذاب ومعبر عن القصة وعدد كلمات ما بين 150 الى 200 كلمة ويتوافر بالقصة الحبكة الدرامية والنهاية المناسبة ' +
+                                  selectedValue1! +
                                   "إبدا بالعنوان مباشرا";
                         }
                         print(Prompit);

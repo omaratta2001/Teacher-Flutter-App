@@ -276,7 +276,7 @@ class _PoemscreenState extends State<Poemscreen> {
                                   setState(() {
                                     print("object");
                                     _numberBoxSelections =
-                                        List.generate(6, (index) => false);
+                                        List.generate(8, (index) => false);
 
                                     _controller.text = text;
                                   });
@@ -303,12 +303,6 @@ class _PoemscreenState extends State<Poemscreen> {
                         final SharedPreferences prefs =
                             await SharedPreferences.getInstance();
                         int? age = await prefs.getInt('age');
-                        Prompit =
-                            'اعتبر نفسك متخصص في تأليف أناشيد الأطفال ولديك المهارة في تأليف أناشيد مناسبة لأطفال الروضة، قم بتأليف نشيد لأطفال الروضة من سن ' +
-                                age.toString() +
-                                selectedValue! +
-                                'بحيث يتوافر في النشيد الكلمات البسيطة المناسبة للسن وان يتوافر في النشيد القافية والسجع في نهاية الابيات مع مراعاة ان تكون الكلمات بالعامية المصرية وان يكون عدد الكلمات المكونة لكل بيت ما بين 3 الى 4 كلمات فقط' +
-                                "أبدا بعنوان النشيد مباشرا  بدون أي مقدمات";
 
                         if (_controller.text != "") {
                           Prompit =
@@ -317,6 +311,13 @@ class _PoemscreenState extends State<Poemscreen> {
                                   _controller.text +
                                   'بحيث يتوافر في النشيد الكلمات البسيطة المناسبة للسن وان يتوافر في النشيد القافية والسجع في نهاية الابيات مع مراعاة ان تكون الكلمات بالعامية المصرية وان يكون عدد الكلمات المكونة لكل بيت ما بين 3 الى 4 كلمات فقط' +
                                   " أبدا بعنوان النشيد مباشرا بدون أي مقدمات";
+                        } else {
+                          Prompit =
+                              'اعتبر نفسك متخصص في تأليف أناشيد الأطفال ولديك المهارة في تأليف أناشيد مناسبة لأطفال الروضة، قم بتأليف نشيد لأطفال الروضة من سن ' +
+                                  age.toString() +
+                                  selectedValue! +
+                                  'بحيث يتوافر في النشيد الكلمات البسيطة المناسبة للسن وان يتوافر في النشيد القافية والسجع في نهاية الابيات مع مراعاة ان تكون الكلمات بالعامية المصرية وان يكون عدد الكلمات المكونة لكل بيت ما بين 3 الى 4 كلمات فقط' +
+                                  "أبدا بعنوان النشيد مباشرا  بدون أي مقدمات";
                         }
                         print(Prompit);
                         Navigator.push(context,

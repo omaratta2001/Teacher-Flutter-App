@@ -25,7 +25,6 @@ class _ImagescreenState extends State<Imagescreen> {
   bool _isListening = false;
   String Prompit = '';
   String _spokenText = '';
-  bool? writing;
   @override
   void initState() {
     super.initState();
@@ -276,7 +275,7 @@ class _ImagescreenState extends State<Imagescreen> {
                                   setState(() {
                                     print("object");
                                     _numberBoxSelections =
-                                        List.generate(6, (index) => false);
+                                        List.generate(8, (index) => false);
 
                                     _controller.text = text;
                                   });
@@ -301,34 +300,26 @@ class _ImagescreenState extends State<Imagescreen> {
                     ElevatedButton(
                       onPressed: () async {
                         Prompit = '';
-                        if (_controller != '') {
-                          writing = true;
-                        }
-                        if (writing != null) {
-                          print(Prompit);
 
-                          if (writing == true) {
-                            Prompit = _controller.text + ' ' + selectedValue!;
-                          } else {
-                            Prompit = _spokenText + ' ' + selectedValue!;
-                          }
-                          GeminiTextService _gemin = new GeminiTextService();
+                        print(Prompit);
+                        Prompit = _controller.text + ' ' + selectedValue!;
 
-                          String? gentext = await _gemin.generateText(
-                              '$Prompit translate this to english without saying anything before or after only say the translation');
-                          final translator = GoogleTranslator();
+                        GeminiTextService _gemin = new GeminiTextService();
 
-                          var translation = await translator.translate(Prompit,
-                              from: 'ar', to: 'en');
-                          Prompit = translation.text;
+                        String? gentext = await _gemin.generateText(
+                            '$Prompit translate this to english without saying anything before or after only say the translation');
+                        final translator = GoogleTranslator();
 
-                          Navigator.push(context, MaterialPageRoute(
-                              builder: (BuildContext context) {
-                            return Genimage(
-                              prompt: 'generate an image about: $gentext',
-                            );
-                          }));
-                        }
+                        var translation = await translator.translate(Prompit,
+                            from: 'ar', to: 'en');
+                        Prompit = translation.text;
+
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (BuildContext context) {
+                          return Genimage(
+                            prompt: 'generate an image about: $gentext',
+                          );
+                        }));
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xff2a569a),

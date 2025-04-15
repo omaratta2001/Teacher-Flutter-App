@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -81,7 +83,6 @@ class _ActivityscreenState extends State<Activityscreen> {
                   SizedBox(
                     height: 110,
                   ),
-
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Container(
@@ -181,7 +182,6 @@ class _ActivityscreenState extends State<Activityscreen> {
                       ),
                     ),
                   ),
-
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Container(
@@ -223,7 +223,6 @@ class _ActivityscreenState extends State<Activityscreen> {
                       ),
                     ),
                   ),
-
                   Center(
                     child: Container(
                       padding:
@@ -238,18 +237,25 @@ class _ActivityscreenState extends State<Activityscreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20), // Add space
                   Stack(
                     children: [
                       Container(
                         width: MediaQuery.of(context).size.width / 1.2,
-                        height: MediaQuery.of(context).size.height / 4,
+                        height: MediaQuery.of(context).size.height / 5,
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(15),
                             border:
                                 Border.all(width: 4, color: Color(0xff006cbe))),
                         child: TextField(
+                          onTap: () {
+                            setState(() {
+                              _numberBoxSelections =
+                                  List.generate(6, (index) => false);
+                              _numberBoxSelections1 =
+                                  List.generate(2, (index) => false);
+                            });
+                          },
                           controller: _controller,
                           decoration: InputDecoration(
                             border: InputBorder.none,
@@ -265,7 +271,7 @@ class _ActivityscreenState extends State<Activityscreen> {
                       Transform.translate(
                         offset: Offset(
                             -MediaQuery.of(context).size.width * 0.68,
-                            MediaQuery.of(context).size.height / 14),
+                            MediaQuery.of(context).size.height / 32),
                         child: InkWell(
                           onTap: () async {
                             setState(() {
@@ -304,14 +310,7 @@ class _ActivityscreenState extends State<Activityscreen> {
                       final SharedPreferences prefs =
                           await SharedPreferences.getInstance();
                       int? age = await prefs.getInt('age');
-                      Prompit =
-                          'اعتبر نفسك كاتب متخصص في تأليف الأنشطة لأطفال الروضة وقم بكتابة نشاط لتنمية أحد ' +
-                              selectedValue! +
-                              'لأطفال الروضة لسن ' +
-                              age.toString() +
-                              'بحيث يتوافر في النشاط عنوان النشاط – زمن النشاط – اهداف النشاط بطريقة إجرائية قابلة للقياس – الأدوات المستخدمة في النشاط - محتوى النشاط – التقويم النهائي للأهداف ' +
-                              selectedValue1! +
-                              " أبدا بالعنوان النشاط مباشرا بدون أي مقدمات";
+                      print(_controller.text);
 
                       if (_controller.text != "") {
                         Prompit =
@@ -321,9 +320,17 @@ class _ActivityscreenState extends State<Activityscreen> {
                                 age.toString() +
                                 'بحيث يتوافر في النشاط عنوان النشاط – زمن النشاط – اهداف النشاط بطريقة إجرائية قابلة للقياس – الأدوات المستخدمة في النشاط - محتوى النشاط – التقويم النهائي للأهداف ' +
                                 " أبدا بالعنوان النشاط مباشرا بدون أي مقدمات";
+                      } else {
+                        Prompit =
+                            'اعتبر نفسك كاتب متخصص في تأليف الأنشطة لأطفال الروضة وقم بكتابة نشاط لتنمية أحد ' +
+                                selectedValue! +
+                                'لأطفال الروضة لسن ' +
+                                age.toString() +
+                                'بحيث يتوافر في النشاط عنوان النشاط – زمن النشاط – اهداف النشاط بطريقة إجرائية قابلة للقياس – الأدوات المستخدمة في النشاط - محتوى النشاط – التقويم النهائي للأهداف ' +
+                                selectedValue1! +
+                                " أبدا بالعنوان النشاط مباشرا بدون أي مقدمات";
                       }
                       print(Prompit);
-                      // ignore: use_build_context_synchronously
                       Navigator.push(context,
                           MaterialPageRoute(builder: (BuildContext context) {
                         return Gentextactivityscreen(
